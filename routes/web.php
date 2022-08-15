@@ -22,6 +22,9 @@ Route::get('/', [ListingController::class, 'index']);
 // Single listings
 Route::get('/listings/{listing}', [ListingController::class, 'show']);
 
+
+
+
 // Route::get('/hello', function () {
 //     return response('Hello World', 200)
 //         ->header('Content-Type', 'text/plain');
