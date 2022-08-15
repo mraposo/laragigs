@@ -33,6 +33,28 @@ class ListingController extends Controller
     }
 
     // Store Listing Data
+    public function store(Request $request)
+    {
+        $formFields = $request->validate([
+            'title' => 'required',
+            'company' => ['required', Rule::unique('listings', 'company')],
+            'location' => 'required',
+            'website' => 'required',
+            'email' => ['required', 'email'],
+            'tags' => 'required',
+            'description' => 'required',
+        ]);
+
+        if ($request->hasFile('logo')) {
+            $formFields['logo'] = $request->file('logo')->store('logos', 'public');
+        }
+
+        Listing::create($formFields);
+
+        return redirect('/')->with('message', 'Listing created succesfully!');
+    }
+
+    // Update Listing Data
     public function update(Request $request, Listing $listing)
     {
         $formFields = $request->validate([
@@ -60,27 +82,10 @@ class ListingController extends Controller
         return view('listings.edit', ['listing' => $listing]);
     }
 
-
-
-    // // Store Listing Data
-    // public function store(Request $request)
-    // {
-    //     $formFields = $request->validate([
-    //         'title' => 'required',
-    //         'company' => ['required', Rule::unique('listings', 'company')],
-    //         'location' => 'required',
-    //         'website' => 'required',
-    //         'email' => ['required', 'email'],
-    //         'tags' => 'required',
-    //         'description' => 'required',
-    //     ]);
-
-    //     if ($request->hasFile('logo')) {
-    //         $formFields['logo'] = $request->file('logo')->store('logos', 'public');
-    //     }
-
-    //     Listing::create($formFields);
-
-    //     return redirect('/')->with('message', 'Listing created succesfully!');
-    // }
+    // Delete Listing
+    public function destroy(Listing $listing)
+    {
+        $listing->delete();
+        return redirect('/')->with('message', 'Listing delete succesfully!');
+    }
 }
