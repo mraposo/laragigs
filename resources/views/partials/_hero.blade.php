@@ -1,18 +1,33 @@
 <section class="relative h-72 bg-laravel flex flex-col justify-center align-center text-center space-y-4 mb-4">
-    <div class="absolute top-0 left-0 w-full h-full opacity-10 bg-no-repeat bg-center"
-        style="background-image: url('images/laravel-logo.png')"></div>
-
     <div class="z-10">
-        <h1 class="text-6xl font-bold uppercase text-white">
-            Mario<span class="text-black"> RAPOSO</span>
-        </h1>
-        <p class="text-2xl text-gray-200 font-bold my-4">
-            Find or post Laravel jobs & projects
-        </p>
-        <div>
-            <a href="register.html"
-                class="inline-block border-2 border-white text-white py-2 px-4 rounded-xl uppercase mt-2 hover:text-black hover:border-black">Sign-UP
-                !</a>
-        </div>
+        @auth
+            <h1 class="text-5xl font-bold text-white ">
+                Welcome
+            </h1><br>
+            <h1 class="text-3xl font-bold text-white ">
+                {{ auth()->user()->name }}
+            </h1>
+            <div class="position-relative h-10 w-20 d-flex align-center">
+                <img src="images/Beeldmerk.png" alt="">
+            </div>
+            <p class="text-2xl text-gray-200 font-bold my-4">
+                Find or post jobs & projects
+            </p>
+        @else
+            <h1 class="text-6xl font-bold uppercase text-white ">
+                MoveAhead
+            </h1>
+            <div class="position-relative h-10 w-20 d-flex justify-content-center">
+                <img src="images/Beeldmerk.png" alt="">
+            </div>
+            <p class="text-2xl text-gray-200 font-bold my-4">
+                Find or post jobs & projects
+            </p>
+            <div>
+                <a href="/register"
+                    class="inline-block border-2 border-white text-white py-2 px-4 rounded-xl uppercase mt-2 hover:bg-mario hover:bg-laravel">Sign
+                    Up to List a Gig</a>
+            </div>
+        @endauth
     </div>
 </section>

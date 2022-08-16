@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="images/favicon.ico" />
+    <link rel="icon" href="images/favicon.png" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
         integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -16,21 +16,22 @@
             theme: {
                 extend: {
                     colors: {
-                        laravel: "#ef3b2d",
+                        laravel: "#224B68",
+                        mario: "#ECE6DB"
                     },
                 },
             },
         };
     </script>
-    <title> Find Laravel Jobs & Projects</title>
+    <title> Find Jobs & Projects</title>
 </head>
 
 <body class="mb-48">
     <nav class="flex justify-between items-center mb-4">
-        <a href="/"><img class="w-10" src="{{ asset('images/logo.png') }}" alt="" class="logo" /></a>
+        <a href="/"><img class="w-24" src="{{ asset('images/logo.png') }}" alt="" class="logo" /></a>
         <ul class="flex space-x-6 mr-6 text-lg">
             @auth
-                <li>
+                <li class="flex text-lg">
                     <span> Welcome {{ auth()->user()->name }}</span>
                 </li>
                 <li>
@@ -40,7 +41,8 @@
                 <li>
                     <form class="inline" method="POST" action="/logout">
                         @csrf
-                        <button type="submit"><i class="fa-solid"></i>Logout</button>
+                        <button type="submit" class="hover:text-laravel"><i
+                                class="fa-solid fa-sign-out"></i>Logout</button>
                     </form>
                 </li>
             @else
@@ -62,9 +64,11 @@
 
     <footer
         class="fixed bottom-0 left-0 w-full flex items-center justify-start font-bold bg-laravel text-white h-20 mt-10 md:justify-center">
-        <p class="ml-2">Copyright &copy; 2022, Mario Raposo</p>
+        <p class="ml-2">Mario Raposo &copy;</p>
 
-        <a href="/listings/create" class="absolute top-1/3 right-10 bg-black text-white py-2 px-5">Post Job</a>
+        <a href="/listings/create"
+            class="inline-block border-2 border-white absolute top-1/3 right-10 bg-laravel text-white py-2 px-5">Post
+            Job</a>
     </footer>
     <x-flash-message />
 </body>
